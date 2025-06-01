@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import App.dto.password;
 import App.model.Todo;
 import App.service.service;
 import App.utils.PasswordEncrypter;
@@ -18,52 +19,40 @@ import App.utils.PasswordEncrypter;
 @RestController
 @RequestMapping("/api")
 public class controller {
-	
-	
-	 private final service todoService;
 
-	    public controller(service todoService) {
-	        this.todoService = todoService;
-	    }
+	private final service todoService;
 
+	public controller(service todoService) {
+		this.todoService = todoService;
+	}
 	@GetMapping("/health")
-	public String healthcheck()
-	{
+	public String healthcheck() {
 		return "running";
 	}
-	
-	@GetMapping("/password/{Password}")
-	public String passwordgen(@PathVariable String Password)
-	{
-		return PasswordEncrypter.passwordHash(Password);
-	}
 	@GetMapping("/getalltodo")
-	public List getall()
-	{
+	public List getall() {
 		return todoService.getalltodo();
 	}
+
 	@GetMapping("/gettodo/{id}")
-	public Todo gettodo(@PathVariable String id)
-	{
+	public Todo gettodo(@PathVariable String id) {
 		return todoService.getone(id);
 	}
+
 	@PostMapping("/createtodo")
-	public String createTodo(@RequestBody Todo todo)
-	{
-	   todoService.savetodo(todo);
-	   return "done"; 
+	public String createTodo(@RequestBody Todo todo) {
+		todoService.savetodo(todo);
+		return "done";
 	}
-	
+
 	@DeleteMapping("/deletetodo/{id}")
-	public String deletetodo(@PathVariable String id)
-	{
+	public String deletetodo(@PathVariable String id) {
 		todoService.deleteTodo(id);
 		return "deleted";
 	}
+
 	@PutMapping("updatetodo/{id}")
-	public String update(@PathVariable String id)
-	{
+	public String update(@PathVariable String id) {
 		return "updated";
 	}
 }
-

@@ -11,8 +11,8 @@ public class PasswordEncrypter {
 		 return encoder.encode(plainPassword);
 	}
 	
-	public static boolean compare( String rawPassword,String hashedPassword) 
-	{
+	public static boolean compare(String rawPassword,String hashedPassword) 
+	{	
 		return encoder.matches(rawPassword, hashedPassword);
 	}
 }
