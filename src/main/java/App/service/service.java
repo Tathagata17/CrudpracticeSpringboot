@@ -2,6 +2,8 @@ package App.service;
 
 import java.util.List;
 
+
+
 import org.springframework.stereotype.Service;
 
 import App.model.Todo;
@@ -16,9 +18,9 @@ public class service {
 	        this.repo = repo;
 	    }
 	
-	public List getalltodo()
+	public List getalltodo(String userName)
 	{
-		return repo.findAll();
+		return repo.findByEmail(userName);
 	}
 	public Todo getone(String id)
 	{

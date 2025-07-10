@@ -25,13 +25,17 @@ public class UserController {
 	{
 		 String HashedPassword =PasswordEncrypter.passwordHash(user.getPassword());
 		 user.setPassword(HashedPassword);
-		 userService.userSignup(user);
+		 if(userService.userSignup(user))
+		 {
 		 return "done";
+		 }
+		 return "not done";
 	}
 	@PostMapping("/userlogin")
-	public boolean Userlogin(@RequestBody LoginRequest loginRequest)
+	public String Userlogin(@RequestBody LoginRequest loginRequest)
 	{
 		String email=loginRequest.getEmail();
-		return userService.userlogin(email,loginRequest.getPassword());
+		String token= userService.userlogin(email,loginRequest.getPassword());
+		return token;
 	}
 }
