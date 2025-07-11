@@ -72,7 +72,7 @@ public class controller {
 	@DeleteMapping("/deletetodo/{id}")
 	public String deletetodo(@PathVariable String id) {
 		todoService.deleteTodo(id);
-		return "deleted";
+		return "yes deleted";
 	}
 
 	@PutMapping("updatetodo/{id}")
